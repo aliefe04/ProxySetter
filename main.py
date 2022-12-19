@@ -59,8 +59,11 @@ elif sys.argv[1] == '-activate' or sys.argv[1] == '-a':
 elif sys.argv[1] == '-deactivate' or sys.argv[1] == '-d':
     deactivate_proxy()
 elif sys.argv[1] == '-change' or sys.argv[1] == '-c':
-    change_address(sys.argv[2])
+    if IndexError:
+        print('Please enter a proxy address "-c newproxy:8080"')
+    else :
+        change_address(sys.argv[2])
 elif sys.argv[1] == '-show' or sys.argv[1] == '-show':
-    fill_in()
+    print(fill_in())
 else:
     print('Wrong argument')
