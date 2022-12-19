@@ -1,1 +1,3 @@
 # ProxySetter
+##TODO
+###[] GUI
