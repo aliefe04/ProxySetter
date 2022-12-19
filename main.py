@@ -1,6 +1,6 @@
 import win32api
 import subprocess
-
+import sys
 proxy_server_query = 'reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer'
 proxy_status_query = 'reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable'
 deactivate_proxy = 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable /t REG_DWORD /d 0 /f'
@@ -51,3 +51,16 @@ def status_check():
     else:
         print(
             f"{regkey_check_return[-1]}, {type(regkey_check_return[-1])}")
+        
+if sys.argv[1] == '-status' or sys.argv[1] == '-s':
+    status_check()
+elif sys.argv[1] == '-activate' or sys.argv[1] == '-a':
+    activate_proxy()
+elif sys.argv[1] == '-deactivate' or sys.argv[1] == '-d':
+    deactivate_proxy()
+elif sys.argv[1] == '-change' or sys.argv[1] == '-c':
+    change_address(sys.argv[2])
+elif sys.argv[1] == '-show' or sys.argv[1] == '-show':
+    fill_in()
+else:
+    print('Wrong argument')
