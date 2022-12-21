@@ -2,21 +2,20 @@ import win32api
 import subprocess
 import sys
 
-proxy_server_query = 'reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer'
-proxy_status_query = 'reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable'
-deactivate_proxy = 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable /t REG_DWORD /d 0 /f'
-activate_proxy = 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable /t REG_DWORD /d 1 /f'
+proxy_server_querys = 'reg query "HKCU\Software\Micro   soft\Windows\CurrentVersion\Internet Settings" /v ProxyServer'
+proxy_status_querys = 'reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable'
+deactivate_proxys = 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable /t REG_DWORD /d 0 /f'
+activate_proxys = 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable /t REG_DWORD /d 1 /f'
 
-win32api.ShellExecute(0, "open", "cmd.exe", "/c " + deactivate_proxy, "", 0)
+win32api.ShellExecute(0, "open", "cmd.exe", "/c " + deactivate_proxys, "", 0)
 
 
 def activate_proxy():
-    win32api.ShellExecute(0, "open", "cmd.exe", "/c " + activate_proxy, "", 0)
+    win32api.ShellExecute(0, "open", "cmd.exe", "/c " + activate_proxys, "", 0)
     print("Proxy activated")
 
-
 def deactivate_proxy():
-    win32api.ShellExecute(0, "open", "cmd.exe", "/c " + deactivate_proxy, "", 0)
+    win32api.ShellExecute(0, "open", "cmd.exe", "/c " + deactivate_proxys, "", 0)
     print("Proxy deactivated")
 
 
@@ -42,7 +41,7 @@ def change_address(new_address):
 # returns latest proxy server address
 def fill_in():
     try:
-        value = subprocess.check_output(proxy_server_query).decode("utf-8").split()[-1]
+        value = subprocess.check_output(proxy_server_querys).decode("utf-8").split()[-1]
         return value
     except:
         value = "0.0.0.0:0"
@@ -52,7 +51,7 @@ def fill_in():
 def status_check():
     # check current regkey value for proxy
     regkey_check = subprocess.Popen(
-        proxy_status_query, shell=True, stdout=subprocess.PIPE
+        proxy_status_querys, shell=True, stdout=subprocess.PIPE
     )
     regkey_check_return = regkey_check.stdout.read().split()
 
@@ -73,9 +72,10 @@ elif sys.argv[1] == "-activate" or sys.argv[1] == "-a":
 elif sys.argv[1] == "-deactivate" or sys.argv[1] == "-d":
     deactivate_proxy()
 elif sys.argv[1] == "-change" or sys.argv[1] == "-c":
-    if IndexError:
+    if len(sys.argv) < 2:
         print('Please enter a proxy address "-c newproxy:8080"')
     else:
+        print("Changing proxy address")
         change_address(sys.argv[2])
 elif sys.argv[1] == "-show" or sys.argv[1] == "-show":
     print(fill_in())
