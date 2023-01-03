@@ -18,6 +18,8 @@ Run the following command: py main.py -[args]
 
 -show: Show the current proxy address
 
+-help or -h: Show the help message
+
 Note: If an invalid argument is provided, the program will display an error message.
 
 ### TODO

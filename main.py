@@ -19,12 +19,6 @@ def deactivate_proxy():
     print("Proxy deactivated")
 
 
-# def change_address(new_address):
-#     shell.ShellExecuteEx(lpFile='cmd.exe',
-#                          lpParameters='/c ' + f'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer /t REG_SZ /d {new_address} /f')
-#     print(f"Changed Proxy Server to {new_address}")
-
-
 def change_address(new_address):
     win32api.ShellExecute(
         0,
@@ -72,12 +66,13 @@ elif sys.argv[1] == "-activate" or sys.argv[1] == "-a":
 elif sys.argv[1] == "-deactivate" or sys.argv[1] == "-d":
     deactivate_proxy()
 elif sys.argv[1] == "-change" or sys.argv[1] == "-c":
-    if len(sys.argv) < 2:
-        print('Please enter a proxy address "-c newproxy:8080"')
-    else:
-        print("Changing proxy address")
-        change_address(sys.argv[2])
+        if len(sys.argv) == 3:
+            change_address(sys.argv[2])
+        else :
+            print('Please enter a proxy address "-c newproxy:PORT"')
 elif sys.argv[1] == "-show" or sys.argv[1] == "-show":
     print(fill_in())
+elif sys.argv[1] == "-help" or sys.argv[1] == "-h":
+    print("\n\n-status or -s: Check the current proxy status\n-activate or -a: Activate the proxy\n-deactivate or -d: Deactivate the proxy\n-change or -c: Change the proxy address (must specify the new address as an additional argument, e.g. setproxy -c newproxy:8080)\n-show: Show the current proxy address\nNote: If an invalid argument is provided, the program will display an error message.\n\n")
 else:
     print("Wrong argument")
