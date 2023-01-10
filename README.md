@@ -1,5 +1,5 @@
 # ProxySetter
-This project aims to provide a simple and easy-to-use solution for setting a proxy.
+My project is open to all contributions, so feel free to fork and make a pull request.
 ## How to use
 Clone this repository
 
