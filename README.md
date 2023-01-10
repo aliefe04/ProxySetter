@@ -23,4 +23,4 @@ Run the following command: py cli.py -[args]
 Note: If an invalid argument is provided, the program will display an error message.
 
 ### TODO
-- [ x ] GUI
+- [x] GUI
