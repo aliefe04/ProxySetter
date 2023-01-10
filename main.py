@@ -3,6 +3,7 @@ import subprocess
 import tkinter
 import customtkinter
 
+
 proxy_server_querys = 'reg query "HKCU\Software\Micro   soft\Windows\CurrentVersion\Internet Settings" /v ProxyServer'
 proxy_status_querys = 'reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable'
 deactivate_proxys = 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable /t REG_DWORD /d 0 /f'
@@ -11,7 +12,7 @@ activate_proxys = 'reg add "HKCU\Software\Microsoft\Windows\CurrentVersion\Inter
 
 def check_active_proxy():
     regkey_check = subprocess.Popen(
-        proxy_status_querys, shell=True, stdout=subprocess.PIPE
+        proxy_status_querys, shell=False, stdout=subprocess.PIPE
     )
     regkey_check_return = regkey_check.stdout.read().split()
 
@@ -27,7 +28,7 @@ def check_proxy_address():
     try:
         result = subprocess.run(
             'reg query "HKCU\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer',
-            shell=True,
+            shell=False,
             check=True,
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
@@ -66,9 +67,13 @@ def change_address(new_address):
         0,
     )
     i = customtkinter.CTkLabel(master=app, text=f"Changed Proxy Server to {new_address}")
-    i.place(
+    
+    if new_address == "":
+        pass
+    else:
+        i.place(
          relx=0.05, rely=0.5, anchor=tkinter.NW)
-    i.after(3000, i.destroy)
+        i.after(3000, i.destroy)
 
 
 def button_click_event():
