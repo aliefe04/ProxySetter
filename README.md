@@ -5,7 +5,7 @@ Clone this repository
 
 Install the dependencies: pip install -r requirements.txt
 
-Run the following command: py main.py -[args]
+Run the following command: py cli.py -[args]
 
 ### Arguments
 -status or -s: Check the current proxy status
@@ -23,4 +23,4 @@ Run the following command: py main.py -[args]
 Note: If an invalid argument is provided, the program will display an error message.
 
 ### TODO
-- [ ] GUI
+- [ x ] GUI
