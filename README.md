@@ -7,6 +7,9 @@ Install the dependencies: pip install -r requirements.txt
 
 Run the following command: py cli.py -[args]
 
+---
+run python cli.py if you want to use it without the GUI
+
 ### Arguments
 -status or -s: Check the current proxy status
 
