@@ -22,9 +22,12 @@ If you want to use it without the GUI Run: python cli.py
 
 -help or -h: Show the help message
 
-Note: If an invalid argument is provided, the program will display an error messag
+Note: If an invalid argument is provided, the program will display an error message
+
 ## Preview
+
 ![alt text](img/preview.png "Logo Title Text 1")
+
 ### TODO
 - [x] GUI
 
