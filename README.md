@@ -20,7 +20,9 @@ Run the following command: py cli.py -[args]
 
 -help or -h: Show the help message
 
-Note: If an invalid argument is provided, the program will display an error message.
-
+Note: If an invalid argument is provided, the program will display an error messag
+## Preview
+![alt text](img/preview.png "Logo Title Text 1")
 ### TODO
 - [x] GUI
+
