@@ -1,11 +1,13 @@
 # ProxySetter
 My project is open to all contributions, so feel free to fork and make a pull request.
-## How to use
+## How to use 
 Clone this repository
 
 Install the dependencies: pip install -r requirements.txt
 
-Run the following command: py cli.py -[args]
+Run the following command: py main.py
+
+If you want to use it without the GUI Run: python cli.py 
 
 ### Arguments
 -status or -s: Check the current proxy status
